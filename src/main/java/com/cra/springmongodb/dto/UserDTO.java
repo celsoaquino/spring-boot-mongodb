@@ -1,6 +1,7 @@
 package com.cra.springmongodb.dto;
 
 import com.cra.springmongodb.domain.User;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import java.io.Serializable;
 
@@ -10,6 +11,9 @@ public class UserDTO implements Serializable {
     private String id;
     private String name;
     private String email;
+
+    public UserDTO() {
+    }
 
     public UserDTO(User obj){
         id = obj.getId();

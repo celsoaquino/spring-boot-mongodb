@@ -1,11 +1,13 @@
 package com.cra.springmongodb.services;
 
 import com.cra.springmongodb.domain.User;
+import com.cra.springmongodb.dto.UserDTO;
 import com.cra.springmongodb.repositories.UserRepository;
 import com.cra.springmongodb.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.jws.soap.SOAPBinding;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,5 +25,17 @@ public class UserService {
         Optional<User> obj = userRepository.findById(id);
         return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
     }
+
+    public User insert(User user){
+        return userRepository.insert(user);
+
+    }
+
+    public User fromDTO(UserDTO userDTO){
+        return new User(userDTO.getId(), userDTO.getName(), userDTO.getEmail());
+    }
+
+
+
 
 }
