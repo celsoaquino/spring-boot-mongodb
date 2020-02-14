@@ -16,12 +16,20 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
 @RestController
 @RequestMapping("/posts")
 public class PostResource {
 
     @Autowired
     private PostService service;
+
+
+    @GetMapping
+    public ResponseEntity<List<Post>> findAll(){
+        List<Post> list= service.findAll();
+        return ResponseEntity.ok().body(list);
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<Post> findById(@PathVariable String id){
